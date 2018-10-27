@@ -29,20 +29,31 @@ public class BinarySearchTree {
     }
 
     private void manageNewNumber(Integer number, Node parentNode) {
-        if (shouldGoLeft(number, parentNode)) {
-            sendDeeper(number, parentNode, parentNode.leftChild);
+        if (isValueLessOrEqual(number, parentNode)) {
+            setAsLeftChild(number, parentNode);
         }
-        sendDeeper(number, parentNode, parentNode.rightChild);
+        setAsRightChild(number, parentNode);
     }
 
-    private void sendDeeper(Integer number, Node parentNode, Node childNode) {
-        if (parentHasChild(childNode)) {
-            manageNewNumber(number, childNode);
+    private void setAsLeftChild(Integer number, Node parentNode) {
+        if (isChild(parentNode.leftChild)) {
+            manageNewNumber(number, parentNode.leftChild);
         }
-        createNewNode(number, parentNode);
+        parentNode.leftChild = createNewNode(number, parentNode);
     }
 
-    private boolean shouldGoLeft(Integer number, Node node) {
+    private void setAsRightChild(Integer number, Node parentNode) {
+        if (isChild(parentNode.rightChild)) {
+            manageNewNumber(number, parentNode.rightChild);
+        }
+        parentNode.rightChild = createNewNode(number, parentNode);
+    }
+
+    private boolean isChild(Node childNode) {
+        return childNode != null;
+    }
+
+    private boolean isValueLessOrEqual(Integer number, Node node) {
         return number <= node.value;
     }
 
@@ -84,6 +95,8 @@ public class BinarySearchTree {
         Node(int value, Node parentNode) {
             this.value = value;
             this.parentNode = parentNode;
+            this.leftChild = null;
+            this.rightChild = null;
         }
     }
 }
