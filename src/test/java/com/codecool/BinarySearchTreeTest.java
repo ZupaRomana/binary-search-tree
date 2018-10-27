@@ -17,4 +17,13 @@ class BinarySearchTreeTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    void throwsException_when_emptyArrayPassed() {
+        final BinarySearchTree tree = new BinarySearchTree();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            tree.initialize(new Integer[]{});
+        });
+    }
 }
