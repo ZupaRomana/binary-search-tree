@@ -21,7 +21,15 @@ public class BinarySearchTree {
     }
 
     private void buildTree(Integer[] array) {
+        for (int i = 0; i < array.length; i++) {
+            if (isNotRootIndex(i, array)) {
 
+            }
+        }
+    }
+
+    private boolean isNotRootIndex(int index, Integer[] array) {
+        return index == getMiddleValue(array);
     }
 
     private void initializeRoot(Integer[] array) {
