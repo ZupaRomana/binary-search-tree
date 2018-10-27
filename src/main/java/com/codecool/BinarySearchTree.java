@@ -52,15 +52,15 @@ public class BinarySearchTree {
 
     private void initializeRoot(Integer[] array) {
         int rootValue = getMiddleValue(array);
-        root = createNewNode(rootValue);
+        root = createNewNode(rootValue, null);
     }
 
     private int getMiddleValue(Integer[] array) {
         return array[getMiddleIndex(array)];
     }
 
-    private Node createNewNode(int rootValue) {
-        return new Node(rootValue);
+    private Node createNewNode(int value, Node parentNode) {
+        return new Node(value, parentNode);
     }
 
     private int getMiddleIndex(Integer[] array) {
@@ -77,9 +77,13 @@ public class BinarySearchTree {
 
     private class Node {
         private int value;
+        private Node parentNode;
+        private Node leftChild;
+        private Node rightChild;
 
-        Node(int value) {
+        Node(int value, Node parentNode) {
             this.value = value;
+            this.parentNode = parentNode;
         }
     }
 }
