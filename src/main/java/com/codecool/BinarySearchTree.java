@@ -29,7 +29,7 @@ public class BinarySearchTree {
     }
 
     private boolean isNotRootIndex(int index, Integer[] array) {
-        return index == getMiddleValue(array);
+        return index == getMiddleIndex(array);
     }
 
     private void initializeRoot(Integer[] array) {
@@ -37,11 +37,15 @@ public class BinarySearchTree {
         root = createNewNode(rootValue);
     }
 
+    private int getMiddleValue(Integer[] array) {
+        return array[getMiddleIndex(array)];
+    }
+
     private Node createNewNode(int rootValue) {
         return new Node(rootValue);
     }
 
-    private int getMiddleValue(Integer[] array) {
+    private int getMiddleIndex(Integer[] array) {
         return array.length / 2;
     }
 
