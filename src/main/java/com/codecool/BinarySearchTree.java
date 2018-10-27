@@ -7,8 +7,21 @@ public class BinarySearchTree {
         root = null;
     }
 
-    public void initialize(Integer[] array) {
-        initializeRoot(array);
+    public void initialize(Integer[] array) throws IllegalArgumentException {
+        if (isArrayEmpty(array)) {
+            throw new IllegalArgumentException();
+        } else {
+            initializeRoot(array);
+            buildTree(array);
+        }
+    }
+
+    private boolean isArrayEmpty(Integer[] array) {
+        return array.length == 0;
+    }
+
+    private void buildTree(Integer[] array) {
+
     }
 
     private void initializeRoot(Integer[] array) {
