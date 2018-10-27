@@ -28,12 +28,18 @@ public class BinarySearchTree {
         }
     }
 
-    private void manageNewNumber(Integer number, Node node) {
-        if (shouldGoLeft(number, node)) {
-            goLeft(number, node);
+    private void manageNewNumber(Integer number, Node parentNode) {
+        if (shouldGoLeft(number, parentNode)) {
+            sendDeeper(number, parentNode, parentNode.leftChild);
         }
+        sendDeeper(number, parentNode, parentNode.rightChild);
+    }
 
-        goRight(number, node);
+    private void sendDeeper(Integer number, Node parentNode, Node childNode) {
+        if (parentHasChild(childNode)) {
+            manageNewNumber(number, childNode);
+        }
+        createNewNode(number, parentNode);
     }
 
     private boolean shouldGoLeft(Integer number, Node node) {
