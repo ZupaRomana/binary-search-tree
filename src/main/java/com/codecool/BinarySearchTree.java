@@ -23,9 +23,21 @@ public class BinarySearchTree {
     private void buildTree(Integer[] array) {
         for (int i = 0; i < array.length; i++) {
             if (isNotRootIndex(i, array)) {
-
+                manageNewNumber(array[i], root);
             }
         }
+    }
+
+    private void manageNewNumber(Integer number, Node node) {
+        if (shouldGoLeft(number, node)) {
+            goLeft(number, node);
+        }
+
+        goRight(number, node);
+    }
+
+    private boolean shouldGoLeft(Integer number, Node node) {
+        return number <= node.value;
     }
 
     private boolean isNotRootIndex(int index, Integer[] array) {
