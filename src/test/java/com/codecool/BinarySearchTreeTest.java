@@ -9,7 +9,8 @@ class BinarySearchTreeTest {
 
     @Test
     void returnsValidRoot() {
-        BinarySearchTree tree = new BinarySearchTree(array);
+        BinarySearchTree tree = new BinarySearchTree();
+        tree.initialize(array);
 
         int expected = 5;
         int actual = tree.getRoot();
