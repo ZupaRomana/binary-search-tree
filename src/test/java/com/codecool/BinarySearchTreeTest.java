@@ -20,10 +20,18 @@ class BinarySearchTreeTest {
 
     @Test
     void throwsException_when_emptyArrayPassed() {
-        final BinarySearchTree tree = new BinarySearchTree();
+        BinarySearchTree tree = new BinarySearchTree();
 
         assertThrows(IllegalArgumentException.class, () -> {
             tree.initialize(new Integer[]{});
         });
+    }
+
+    @Test
+    void returnsTrue_when_lookingForValidElem() {
+        BinarySearchTree tree = new BinarySearchTree();
+        tree.initialize(array);
+
+        assertTrue(array.contains(10));
     }
 }
