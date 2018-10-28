@@ -16,6 +16,10 @@ public class BinarySearchTree {
         }
     }
 
+    public boolean contains(int number) {
+        return equalsNodeValue(number, root);
+    }
+
     private boolean isArrayEmpty(Integer[] array) {
         return array.length == 0;
     }
