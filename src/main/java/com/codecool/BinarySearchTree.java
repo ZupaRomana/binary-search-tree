@@ -99,10 +99,6 @@ public class BinarySearchTree {
         return childNode != null;
     }
 
-    private boolean isValueLessOrEqual(Integer number, Node node) {
-        return number <= node.value;
-    }
-
     private boolean isNotRootIndex(int index, Integer[] array) {
         return index != getMiddleIndex(array);
     }
