@@ -20,6 +20,28 @@ public class BinarySearchTree {
         return equalsNodeValue(number, root);
     }
 
+    private boolean equalsNodeValue(int number, Node node) {
+        if (isEqual(number, node)) {
+            return true;
+        } else if (isLess(number, node)) {
+            if (node.leftChild == null) {
+                return false;
+            } else return equalsNodeValue(number, node.leftChild);
+        } else {
+            if (node.rightChild == null) {
+                return false;
+            } else return equalsNodeValue(number, node.rightChild);
+        }
+    }
+
+    private boolean isLess(int number, Node node) {
+        return number < node.value;
+    }
+
+    private boolean isEqual(int number, Node node) {
+        return number == node.value;
+    }
+
     private boolean isArrayEmpty(Integer[] array) {
         return array.length == 0;
     }
