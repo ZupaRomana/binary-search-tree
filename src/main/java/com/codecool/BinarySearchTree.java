@@ -29,17 +29,21 @@ public class BinarySearchTree {
     public void remove(int number) throws NoSuchElementException {
         if (!contains(number)) {
             throw new NoSuchElementException();
+        } else {
+            Node nodeToRemove = find(number, root);
+            nodeToRemove.parentNode.leftChild = nodeToRemove.leftChild;
+            nodeToRemove.parentNode.rightChild = nodeToRemove.rightChild;
+            nodeToRemove.leftChild.parentNode = nodeToRemove.rightChild.parentNode = nodeToRemove.parentNode;
         }
-        Node node = find(number, root);
     }
 
     private Node find(int number, Node node) {
         if (isEqual(number, node)) {
             return node;
         } else if (isLess(number, node)) {
-            find(number, node.leftChild);
+            return find(number, node.leftChild);
         } else {
-            find(number, node.rightChild);
+            return find(number, node.rightChild);
         }
     }
 
@@ -90,28 +94,30 @@ public class BinarySearchTree {
         }
     }
 
-    private void manageNewNumber(Integer number, Node parentNode) {
-        if (isEqual(number, parentNode)) {
-            changeLeftChild(number, parentNode);
-        } else if (isLess(number, parentNode)) {
-            setAsLeftChild(number, parentNode);
+    private void manageNewNumber(Integer number, Node node) {
+        if (isEqual(number, node)) {
+            changeLeftChild(number, node);
+        } else if (isLess(number, node)) {
+            setAsLeftChild(number, node);
         } else {
-            setAsRightChild(number, parentNode);
+            setAsRightChild(number, node);
         }
     }
 
     private void setAsLeftChild(Integer number, Node parentNode) {
         if (isChild(parentNode.leftChild)) {
             manageNewNumber(number, parentNode.leftChild);
+        } else {
+            parentNode.leftChild = createNewNode(number, parentNode);
         }
-        parentNode.leftChild = createNewNode(number, parentNode);
     }
 
     private void setAsRightChild(Integer number, Node parentNode) {
         if (isChild(parentNode.rightChild)) {
             manageNewNumber(number, parentNode.rightChild);
+        } else {
+            parentNode.rightChild = createNewNode(number, parentNode);
         }
-        parentNode.rightChild = createNewNode(number, parentNode);
     }
 
     private boolean isChild(Node childNode) {
