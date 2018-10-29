@@ -72,10 +72,13 @@ public class BinarySearchTree {
     }
 
     private void manageNewNumber(Integer number, Node parentNode) {
-        if (isValueLessOrEqual(number, parentNode)) {
+        if (isEqual(number, parentNode)) {
+            changeLeftChild(number, parentNode);
+        } else if (isLess(number, parentNode)) {
             setAsLeftChild(number, parentNode);
+        } else {
+            setAsRightChild(number, parentNode);
         }
-        setAsRightChild(number, parentNode);
     }
 
     private void setAsLeftChild(Integer number, Node parentNode) {
