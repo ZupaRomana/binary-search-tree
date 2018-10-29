@@ -24,6 +24,10 @@ public class BinarySearchTree {
         manageNewNumber(number, root);
     }
 
+    public void remove(int number) {
+
+    }
+
     private void changeLeftChild(int number, Node parent) {
         Node child = createNewNode(number, parent);
         swapRelationships(parent, child);

@@ -2,6 +2,8 @@ package com.codecool;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BinarySearchTreeTest {
@@ -74,5 +76,14 @@ class BinarySearchTreeTest {
         tree.remove(3);
 
         assertFalse(tree.contains(3));
+    }
+
+    @Test
+    void throwsException_when_notExistingNumberPassedRemoveInvoked() {
+        BinarySearchTree tree = new BinarySearchTree();
+        tree.initialize(array);
+        assertThrows(NoSuchElementException.class, () -> {
+            tree.remove(15);
+        });
     }
 }
