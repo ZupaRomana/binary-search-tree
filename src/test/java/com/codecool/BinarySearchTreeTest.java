@@ -46,4 +46,14 @@ class BinarySearchTreeTest {
 
         assertTrue(tree.contains(10));
     }
+
+    @Test
+    void returnsTrue_when_newElementPassedContainsInvoked() {
+        BinarySearchTree tree = new BinarySearchTree();
+        Integer[] arr = new Integer[]{1, 2, 3, 5, 7};
+        tree.initialize(arr);
+        tree.add(4);
+
+        assertTrue(tree.contains(4));
+    }
 }
