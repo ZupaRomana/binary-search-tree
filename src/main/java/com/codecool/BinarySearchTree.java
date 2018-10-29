@@ -31,9 +31,8 @@ public class BinarySearchTree {
             throw new NoSuchElementException();
         } else {
             Node nodeToRemove = find(number, root);
-            if (!equalsRoot(nodeToRemove)) {
-                changeReferences(number, nodeToRemove);
-            }
+            Node nodeToReplace = getLastLeftChildFromRightChild();
+            swapNodes(nodeToRemove);
         }
     }
 
