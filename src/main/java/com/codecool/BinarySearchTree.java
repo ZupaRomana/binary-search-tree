@@ -21,9 +21,7 @@ public class BinarySearchTree {
     }
 
     public void add(int number) {
-        if (isEqual(number, root)) {
-            changeLeftChild(number, root);
-        }
+        manageNewNumber(number, root);
     }
 
     private void changeLeftChild(int number, Node parent) {
