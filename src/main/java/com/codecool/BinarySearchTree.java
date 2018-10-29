@@ -36,6 +36,25 @@ public class BinarySearchTree {
         }
     }
 
+    private void swapNodes(Node nodeToRemove, Node nodeToReplace) {
+        nodeToReplace.parentNode = nodeToRemove.parentNode;
+        nodeToReplace.leftChild = nodeToRemove.leftChild;
+        nodeToReplace.rightChild = nodeToRemove.rightChild;
+        if (nodeToRemove.parentNode.rightChild == nodeToRemove) {
+            nodeToRemove.parentNode.rightChild = nodeToReplace;
+        } else {
+            nodeToRemove.parentNode.leftChild = nodeToReplace;
+        }
+
+        if (nodeToRemove.leftChild != null) {
+            nodeToRemove.leftChild.parentNode = nodeToReplace;
+        }
+
+        if (nodeToRemove.rightChild != null) {
+            nodeToRemove.rightChild.parentNode = nodeToReplace;
+        }
+    }
+
     private Node getLastLeftChildFromRightChild(Node node) {
         Node result = null;
         if (hasRightChild(node)) {
