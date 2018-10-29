@@ -8,12 +8,24 @@ class BinarySearchTreeTest {
     private Integer[] array = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     @Test
-    void returnsValidRoot() {
+    void returnsValidRoot_when_evenElements() {
         BinarySearchTree tree = new BinarySearchTree();
         tree.initialize(array);
 
+        int expected = 6;
+        int actual = tree.getRootValue();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void returnsValidRoot_when_oddElements() {
+        BinarySearchTree tree = new BinarySearchTree();
+        Integer[] arr = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
+        tree.initialize(arr);
+
         int expected = 5;
-        int actual = tree.getRoot();
+        int actual = tree.getRootValue();
 
         assertEquals(expected, actual);
     }
@@ -32,6 +44,6 @@ class BinarySearchTreeTest {
         BinarySearchTree tree = new BinarySearchTree();
         tree.initialize(array);
 
-        assertTrue(array.contains(10));
+        assertTrue(tree.contains(10));
     }
 }
