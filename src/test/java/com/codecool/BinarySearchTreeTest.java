@@ -66,4 +66,13 @@ class BinarySearchTreeTest {
 
         assertTrue(tree.contains(3));
     }
+
+    @Test
+    void returnsFalse_when_removedItemContainsInvoked() {
+        BinarySearchTree tree = new BinarySearchTree();
+        tree.initialize(array);
+        tree.remove(3);
+
+        assertFalse(tree.contains(3));
+    }
 }
