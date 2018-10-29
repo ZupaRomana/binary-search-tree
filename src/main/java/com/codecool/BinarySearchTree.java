@@ -20,6 +20,19 @@ public class BinarySearchTree {
         return equalsNodeValue(number, root);
     }
 
+    public void add(int number) {
+        if (isEqual(number, root)) {
+            changeRoot(number);
+        }
+    }
+
+    private void changeRoot(int number) {
+        Node temp = root;
+        root = createNewNode(number, null);
+        root.leftChild = temp;
+        temp.parentNode = root;
+    }
+
     private boolean equalsNodeValue(int number, Node node) {
         if (isEqual(number, node)) {
             return true;
