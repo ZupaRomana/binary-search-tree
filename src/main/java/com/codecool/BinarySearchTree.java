@@ -22,15 +22,25 @@ public class BinarySearchTree {
 
     public void add(int number) {
         if (isEqual(number, root)) {
-            changeRoot(number);
+            changeLeftChild(number, root);
         }
     }
 
-    private void changeRoot(int number) {
-        Node temp = root;
-        root = createNewNode(number, null);
-        root.leftChild = temp;
-        temp.parentNode = root;
+    private void changeLeftChild(int number, Node parent) {
+        Node child = createNewNode(number, parent);
+        swapRelationships(parent, child);
+        parent.leftChild = child;
+    }
+
+    private void changeRightChild(int number, Node parent) {
+        Node child = createNewNode(number, parent);
+        swapRelationships(parent, child);
+        parent.rightChild = child;
+    }
+
+    private void swapRelationships(Node parent, Node child) {
+        child.leftChild = parent.leftChild;
+        child.rightChild = parent.rightChild;
     }
 
     private boolean equalsNodeValue(int number, Node node) {
