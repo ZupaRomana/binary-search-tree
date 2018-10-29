@@ -1,5 +1,7 @@
 package com.codecool;
 
+import java.util.NoSuchElementException;
+
 public class BinarySearchTree {
     Node root;
 
@@ -24,8 +26,21 @@ public class BinarySearchTree {
         manageNewNumber(number, root);
     }
 
-    public void remove(int number) {
+    public void remove(int number) throws NoSuchElementException {
+        if (!contains(number)) {
+            throw new NoSuchElementException();
+        }
+        Node node = find(number, root);
+    }
 
+    private Node find(int number, Node node) {
+        if (isEqual(number, node)) {
+            return node;
+        } else if (isLess(number, node)) {
+            find(number, node.leftChild);
+        } else {
+            find(number, node.rightChild);
+        }
     }
 
     private void changeLeftChild(int number, Node parent) {
