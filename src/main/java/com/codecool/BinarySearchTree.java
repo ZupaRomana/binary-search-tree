@@ -31,9 +31,29 @@ public class BinarySearchTree {
             throw new NoSuchElementException();
         } else {
             Node nodeToRemove = find(number, root);
-            Node nodeToReplace = getLastLeftChildFromRightChild();
-            swapNodes(nodeToRemove);
+            Node nodeToReplace = getLastLeftChildFromRightChild(nodeToRemove);
+            swapNodes(nodeToRemove, nodeToReplace);
         }
+    }
+
+    private Node getLastLeftChildFromRightChild(Node node) {
+        Node result = null;
+        if (hasRightChild(node)) {
+            result = node.rightChild;
+            while (hasLeftChild(result)) {
+                result = result.leftChild;
+            }
+        }
+        return result;
+
+    }
+
+    private boolean hasLeftChild(Node node) {
+        return node.leftChild != null;
+    }
+
+    private boolean hasRightChild(Node node) {
+        return node.rightChild != null;
     }
 
     private void changeReferences(int number, Node nodeToRemove) {
