@@ -24,13 +24,9 @@ public class BinarySearchTree {
         if (isEqual(number, node)) {
             return true;
         } else if (isLess(number, node)) {
-            if (node.leftChild == null) {
-                return false;
-            } else return equalsNodeValue(number, node.leftChild);
+            return node.leftChild == null ? false : equalsNodeValue(number, node.leftChild);
         } else {
-            if (node.rightChild == null) {
-                return false;
-            } else return equalsNodeValue(number, node.rightChild);
+            return node.rightChild == null ? false : equalsNodeValue(number, node.rightChild);
         }
     }
 
