@@ -3,7 +3,7 @@ package com.codecool;
 import java.util.NoSuchElementException;
 
 public class BinarySearchTree {
-    Node root;
+    private Node root;
 
     public BinarySearchTree() {
         root = null;
@@ -31,10 +31,20 @@ public class BinarySearchTree {
             throw new NoSuchElementException();
         } else {
             Node nodeToRemove = find(number, root);
-            nodeToRemove.parentNode.leftChild = nodeToRemove.leftChild;
-            nodeToRemove.parentNode.rightChild = nodeToRemove.rightChild;
-            nodeToRemove.leftChild.parentNode = nodeToRemove.rightChild.parentNode = nodeToRemove.parentNode;
+            if (!equalsRoot(nodeToRemove)) {
+                changeReferences(number, nodeToRemove);
+            }
         }
+    }
+
+    private void changeReferences(int number, Node nodeToRemove) {
+        if (isEqual(number, nodeToRemove)) {
+
+        }
+    }
+
+    private boolean equalsRoot(Node nodeToRemove) {
+        return nodeToRemove == root;
     }
 
     private Node find(int number, Node node) {
@@ -53,15 +63,9 @@ public class BinarySearchTree {
         parent.leftChild = child;
     }
 
-    private void changeRightChild(int number, Node parent) {
-        Node child = createNewNode(number, parent);
-        swapRelationships(parent, child);
-        parent.rightChild = child;
-    }
-
-    private void swapRelationships(Node parent, Node child) {
-        child.leftChild = parent.leftChild;
-        child.rightChild = parent.rightChild;
+    private void swapRelationships(Node newParent, Node newChild) {
+        newChild.leftChild = newParent.leftChild;
+        newChild.rightChild = newParent.rightChild;
     }
 
     private boolean equalsNodeValue(int number, Node node) {
